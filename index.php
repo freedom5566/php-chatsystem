@@ -13,19 +13,48 @@
 
 
 
-<div id="wrapper">
-    <h1>This is a heading</h1>
-  <div class="chatwrapper">
-    <div id="chat"></div>
-      <form method="post">
-        <textarea name="message" cols="30" rows="7" class="textarea">
-        </textarea>
-      </form>
 
+    <div id="wrapper">
+        <h1>來聊天吧</h1>
+        <div class="chatwrapper">
+            <div id="chat"></div>
+            <form method="post" id="messageFrm">
+                <textarea name="message" cols="30" rows="7" class="textarea">
+                </textarea>
+            </form>
+
+        </div>
     </div>
-  </div>
+    <script>
+        LoadChat();
+        setInterval(function(){
+            LoadChat();
+        },10000);
+        function LoadChat(){
+            $.post('/chatsystem/handlers/message.php?action=getMessage',function(response){
+                $('#chat').html(response);
+                $('#chat').scrollTop($('#chat').prop('scrollHeight'));
+            });
+        }
+        $('.textarea').keyup(function(e){
+                if(e.which==13) {
+                    //按下enter
+                    $('form').submit();
+                }
+        });
+        $('form').submit(function(){
+            let message=$('.textarea').val();
+            $.post('/chatsystem/handlers/message.php?action=sendMessage&message='+message,
+            function(response){
+                if (response==1) {
+                    LoadChat();
+                    document.getElementById('messageFrm').reset();
+                }
+            });
+            return false;
+        });
+    </script>
 
-</div>
 
 </body>
 </html>

@@ -1,13 +1,13 @@
-*{
+/**{
     padding: 0px;
     margin: 0px;
 
-}
+}*/
 #wrapper{
   width: 1000px;
-  margin: 10px auto;
-  background: #f1f1f1;
-  padding: 20px;
+  margin: 10px auto; /*邊界上右下左*/
+  background: #f1f1f1; /*背景*/
+  padding: 20px; /*留白*/
 }
 .chatwrapper{
   width: 70%;
@@ -15,23 +15,22 @@
   background: #ffffff;
 }
 #chat{
-    min-height: 300px;
+    min-height: 300px; /*最小高度*/
     height: 500px;
-    overflow: auto;
-    border: 1px solid #b3b3b3;
+    overflow: auto; /*自動增加捲軸*/
+    border: 1px solid #b3b3b3; /*實線邊框*/
     padding: 10px;
 }
 .textarea{
     width: 96%;
     border: 1px solid #b3b3b3;
-    outline: none;
     padding: 10px;
     margin-top: 10px;
 }
 .single-message{
     padding: 5px 0px 5px 0px;
-    border-bottom: 1px solid    #b3b3b3;
+    border-bottom: 1px solid #b3b3b3; /*邊框底線*/
 }
 .single-message span{
-    float: right;
+    float: right; /*讓時間浮動在右邊*/
 }

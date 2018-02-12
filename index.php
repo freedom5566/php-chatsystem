@@ -19,7 +19,7 @@
         <div class="chatwrapper">
             <div id="chat"></div>
             <form method="post" id="messageFrm">
-                <textarea name="message" cols="30" rows="7" class="textarea">
+                <textarea name="message"  rows="7"  cols="30" class="textarea">
                 </textarea>
             </form>
 
@@ -33,6 +33,8 @@
         function LoadChat(){
             $.post('/chatsystem/handlers/message.php?action=getMessage',function(response){
                 $('#chat').html(response);
+
+                // 文字過多時可以保持捲動到最下面
                 $('#chat').scrollTop($('#chat').prop('scrollHeight'));
             });
         }
@@ -51,7 +53,7 @@
                     document.getElementById('messageFrm').reset();
                 }
             });
-            return false;
+            return false;//不重新整理畫面
         });
     </script>
 

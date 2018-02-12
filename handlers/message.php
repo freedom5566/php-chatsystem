@@ -2,7 +2,7 @@
 require('../config.php');
     switch ($_REQUEST['action']) {
         case 'sendMessage':
-            # code...
+            //新增聊天內容
             session_start();
             $query=$dbh->prepare("INSERT INTO messages SET user=?,message=?");
             $run=$query->execute([$_SESSION['username'],$_REQUEST['message']]);
@@ -12,9 +12,10 @@ require('../config.php');
             }
             break;
         case 'getMessage':
+            //抓出聊天內容
             $query=$dbh->prepare("SELECT * FROM messages");
             $run=$query->execute();
-            $rs=$query->fetchAll(PDO::FETCH_OBJ);
+            $rs=$query->fetchAll(PDO::FETCH_OBJ);//返回obj
             $chat='';
             foreach ($rs as $message) {
                 //$chat .=$message->message.'<br/>';
